@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { auth } from "../../firebase";
+import styles from "./Home.module.css";
 
 export default function Home(props) {
   const navigate = useNavigate();
@@ -10,18 +11,19 @@ export default function Home(props) {
   };
 
   return (
-    <div>
-      <div>
+    <div className={styles["home-container"]}>
+      <div className={styles["home-box"]}>
         <h1>
           <Link to="/login">Accede</Link>
         </h1>
-        <br />
         <h1>
           <Link to="/signup">Registrarse</Link>
         </h1>
+        <h2>{props.name ? `Bienvenido ${props.name}` : "Iniciar sesión"}</h2>
+        <button className={styles["logout-button"]} onClick={logOut}>
+          Salir
+        </button>
       </div>
-      <h2>{props.name ? `Bienvenido ${props.name}` : "Iniciar sesión"}</h2>
-      <button onClick={logOut}>Salir</button>
     </div>
   );
 }
